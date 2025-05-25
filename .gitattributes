@@ -1,0 +1,10 @@
+# Normalize all files from text to LF in the repository
+* text=auto
+
+# Force scripts to LF to avoid error in bash
+*.sh text eol=lf
+*.py text eol=lf
+*.js text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.yml text eol=lf

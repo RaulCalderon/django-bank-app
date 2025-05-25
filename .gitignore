@@ -1,0 +1,41 @@
+# Virtual enviroment
+env/
+venv/
+ENV/
+.env
+*.env
+
+# Python compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Config files
+*.sqlite3
+*.log
+
+# Docker files
+*.pid
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Migrations files (optional)
+**/migrations/*.pyc
+**/migrations/__pycache__/
+
+# IDEs configs
+.vscode/
+.idea/
+
+# Generated files for tests
+htmlcov/
+coverage.xml
+*.cover
+*.py,cover
+.cache
+.tox/
+
+# PostgreSQL mounted files
+postgres_data/

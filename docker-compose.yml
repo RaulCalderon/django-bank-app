@@ -1,0 +1,33 @@
+services:
+  db:
+    image: postgres:16
+    container_name: bank_postgres
+    environment:
+      POSTGRES_DB: bank_django
+      POSTGRES_USER: bank_user
+      POSTGRES_PASSWORD: bank_pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  web:
+    build: .
+    container_name: bank_django
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DEBUG=True
+      - DB_NAME=bank_django
+      - DB_USER=bank_user
+      - DB_PASSWORD=bank_pass
+      - DB_HOST=db
+      - DB_PORT=5432
+
+volumes:
+  postgres_data:
