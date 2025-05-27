@@ -11,14 +11,16 @@ This project is an API REST for a basic banking system that allows you to manage
 - Django REST Framework
 - PostgreSQL 14+
 - Docker + Docker Compose
+- Github Version Control
 
 ---
 
-## 📁 Estructura del proyecto
+## 📁 Project Structure
 
 django-bank-app/
 ├── bank/ # Main App
 │ ├── models.py # Models: Client, Account, Transfers
+│ ├── tests.py # Automated tests
 │ ├── views.py # DRF ViewSets
 │ ├── serializers.py # Serializers
 │ └── urls.py # API Routes
@@ -75,12 +77,16 @@ python manage.py runserver
 ## 🐳 Docker
 
 1. **Make sure you have Docker and Docker Compose installed**
-2. **Run the containers**
+2. **Build and Run the containers**
 ```bash
 docker-compose up --build
 ```
+3.- **Execute migrations from the container**
+```bash
+docker-compose exec web python manage.py migrate
+```
 
-3. **App available in: http://127.0.0.1:8000/api/**
+4. **App available in: http://127.0.0.1:8000/api/**
 - PostgreSQL: on container `db` (port 5432)
 
 ---
@@ -95,9 +101,26 @@ docker-compose up --build
 
 You can test them with Postman, curl or from the web browser.
 
+## ✅ Automated Tests:
 
+1.- **Execute tests in local**
+```bash
+python manage.py test
+```
+2.- **Execute test from Docker**
+```bash
+docker-compose exec web python manage.py test
+```
 
+## 🔁 Implemented validations
 
+✅ Clients can't have an empty name or a repeated email.
 
+✅ Account numbers must be only numeric and unique.
 
+✅ Transfers validations:
+
+    Clients can't transfer to the same account.
+    Amount must be grater than Cero.
+    Verify insufficient balance.
 
